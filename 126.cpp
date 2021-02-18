@@ -1,35 +1,5 @@
 class Solution {
-public:
-    
-    bool valid(string a,string b){
-        int n = a.size();
-        int i=0,cnt=0;
-        
-        while(i<n){
-            if(a[i]!=b[i]) cnt ++;
-            if(cnt > 1) return false;
-        }
-        return true;
-    }
-    
-    void ladders(vector<string>& a,vector<vector<string>>&ans,int idx,int n,vector<string>& wordL,string endWord){
-        
-        if(a.back() == endWord){
-            ans.push_back(a);
-            return;
-        }
-        
-        if(idx >=n) return;
-
-        for(int i=idx;i<n;i++){
-            if(valid(a.back(),wordL[i])){
-                a.push_back(wordL[i]);
-                ladders(a,ans,i+1,n,wordL,endWord);
-                a.pop_back();
-            }
-        }
-    }
-    
+public:    
     vector<vector<string>> findLadders(string beginWord, string endWord, vector<string>& wordList) {
         vector<vector<string>> res;       
         unordered_set<string> uset(wordList.begin(), wordList.end());

@@ -11,20 +11,20 @@
 class Solution {
 public:
     ListNode* removeNthFromEnd(ListNode* head, int n) {
-        ListNode* p1=head,*p2=nullptr;
-        while(p1)
-        {
-            if(n<=0)
-            {
-                if(p2) p2=p2->next;  // if n<=0 start moving p2, this will move p2
-                else p2=head;       // until p1!=null hence it will stop before nth node from end.
-            }
-            p1=p1->next;
-            n--;
+        ListNode* p,*k;
+        
+        p = k = head;
+        for(int i=1;i<n;i++) p = p->next;
+        
+        ListNode* prev;
+        while(p->next!=NULL){
+            prev = k;
+            p= p->next;
+            k=k->next;
         }
         
-        if(p2) p2->next=p2->next->next;
-        else head=head->next;  // if node to be deleted is the 1st node
+        if(k==head) return head->next;
+        prev->next = k->next;    
         return head;
     }
 };
